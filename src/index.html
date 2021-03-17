@@ -25,6 +25,7 @@
             <input type="range" id="scale" name="scale" min="-10" max="10">
             <label>Translate Y:</label>
             <input type="range" id="scale" name="scale" min="-10" max="10">
+            <button id = "button-tools" onclick="">Reset</button>
             <h3>PROJECTION</h3>
             <button id = "button-proj" onclick="">Orthographic</button>
             <button id = "button-proj" onclick="">Oblique</button>
@@ -46,6 +47,7 @@
 
     <script>
         var vertices = [];
+        var objects = [];
 
         const canvas = document.querySelector('#glcanvas');
         canvas.width = 520;

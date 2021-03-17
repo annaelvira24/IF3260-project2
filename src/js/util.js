@@ -1,3 +1,34 @@
+function getCenterPoint(start, end, arr){
+    let maxX = -1;
+    let minX = 1;
+    let maxY = -1;
+    let minY = 1;
+
+    for (var i = start; i < end; i+=3){
+        if(maxX < arr[i]){
+            maxX = arr[i];
+        }
+
+        if(minX > arr[i]){
+            minX = arr[i];
+        }
+
+        if(maxY < arr[i+1]){
+            maxY = arr[i+1];
+        }
+
+        if(minY > arr[i+1]){
+            minY = arr[i+1];
+        }
+    }
+
+    let centerX = (maxX + minX)/2;
+    let centerY = (maxY + minY)/2;
+    console.log(arr[end-1]);
+    return ([centerX, centerY])
+}
+
+
 function getMousePosition(canvas, event) { 
     let temp = [];
     let rect = canvas.getBoundingClientRect(); 

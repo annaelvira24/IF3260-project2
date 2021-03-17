@@ -7,6 +7,15 @@ function translation(tx, ty, tz){
     ];
 }
 
+function scale(sx, sy, sz){
+    return [
+      sx, 0,  0,  0,
+      0, sy,  0,  0,
+      0,  0, sz,  0,
+      0,  0,  0,  1,
+    ];
+}
+
 function xRotation(angleInRadians) {
     var c = Math.cos(angleInRadians);
     var s = Math.sin(angleInRadians);
