@@ -160,8 +160,8 @@ function setUpInitScene(){
       "name" : "cube",
       "offset" : 0,
       "end" : 24,
-      "numVertices" : 36*3,
-      "vertices" : cubeVertices,
+      "numVertices" : 36,
+      "vertices" : vertices.slice(0,36*3),
       "color" : colors.slice(0, 36*3),
       "projMatrix" : proj_matrix,
       "modelMatrix" : model_matrix
