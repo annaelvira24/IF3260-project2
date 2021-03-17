@@ -50,6 +50,7 @@ for (var i = 0; i < 12*4*6; i++){
       vertices.push(cubeVertices[i]);
    }
 }
+
  var colors = [
     1,0,1, 1,0,1, 1,0,1, 1,0,1,
     1,0,1, 1,0,1, 1,0,1, 1,0,1,
@@ -134,12 +135,12 @@ for (var i = 0; i < 12*4*6; i++){
 
 //  var proj_matrix = get_projection(40, canvas.width/canvas.height, 1, 100);
 
-// draw hollow cube
-function drawCube(proj_matrix, model_matrix){
+// draw object
+function draw(proj_matrix, model_matrix, start, end){
    gl.uniformMatrix4fv(_Pmatrix, false, proj_matrix);
    gl.uniformMatrix4fv(_Mmatrix, false, model_matrix);
 
-   for (var i = 0; i < 24; i++){
+   for (var i = start; i < end; i++){
       gl.drawArrays(gl.TRIANGLE_FAN, i*4, 4);
    }
 }
@@ -158,6 +159,7 @@ function setUpInitScene(){
    objects.push({
       "name" : "cube",
       "offset" : 0,
+      "end" : 24,
       "numVertices" : 36*3,
       "vertices" : cubeVertices,
       "color" : colors.slice(0, 36*3),
@@ -166,8 +168,9 @@ function setUpInitScene(){
    });
 
    console.log(objects);
-
-   drawCube(proj_matrix, model_matrix);
+   for(var i = 0; i<objects.length; i++){
+      draw(objects[i].projMatrix, objects[i].modelMatrix, objects[i].offset, objects[i].end);  
+   }
 }
 
 setUpBuffer();
