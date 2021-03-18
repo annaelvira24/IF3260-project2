@@ -28,6 +28,14 @@ function getCenterPoint(start, end, arr){
     return ([centerX, centerY])
 }
 
+function resetValue(){
+    document.getElementById('scale').value = 0;
+    document.getElementById('rotate').value = 0;
+    document.getElementById('transX').value = 0;
+    document.getElementById('transY').value = 0;
+    value = 0;
+}
+
 
 function getMousePosition(canvas, event) { 
     let temp = [];

@@ -3,6 +3,7 @@
     <head>
         <link rel="stylesheet" href="css/template.css">
         <script>
+            var oldValue = 0;
         </script>
                         
     </head>
@@ -12,19 +13,19 @@
             <h3>TOOLS</h3>
             <button id = "button-tools" onclick="">Camera</button>
             <label for="cars">Choose an object:</label>
-            <select id="object" name="objectlist">
-                <option value="HollowCube">Hollow Cube</option>
-                <option value="HollowCube">Hollow ??</option>
-                <option value="HollowCube">Hollow ??</option>
+            <select id="objectlist" name="objectlist" onchange="resetValue()">
+                <option value="cube">Hollow Cube</option>
+                <option value="pyramid">Hollow Pyramid</option>
+                <option value="prism">Hollow Prism</option>
             </select>
             <label>Rotate (radian):</label>
-            <input type="range" id="scale" name="scale" min="-180" max="180">
+            <input type="range" id="rotate" name="scale" min="-180" max="180">
             <label>Scale:</label>
             <input type="range" id="scale" name="scale" min="-10" max="10">
             <label>Translate X:</label>
-            <input type="range" id="scale" name="scale" min="-10" max="10">
+            <input type="range" id="transX" name="scale" min="-2" max="2" step="0.05" oninput="updateTranslate('x', this.value)">
             <label>Translate Y:</label>
-            <input type="range" id="scale" name="scale" min="-10" max="10">
+            <input type="range" id="transY" name="scale" min="-2" max="2" step="0.05" oninput="updateTranslate('y', this.value)">
             <button id = "button-tools" onclick="">Reset</button>
             <label> Shader mode </label> <input type="checkbox">
             <h3>PROJECTION</h3>
@@ -114,6 +115,7 @@
       <script type="text/javascript" src="js/util.js"></script>
       <script type="text/javascript" src="js/matrixOp.js"></script>
       <script type="text/javascript" src="js/draw.js"></script>
+      <script type="text/javascript" src="js/transformation.js"></script>
       <!-- TODO: -->
       <!-- <script type="text/javascript" src="js/buttonClick.js"></script> -->
       <!-- <script type="text/javascript" src="js/fileManager.js"></script> -->

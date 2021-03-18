@@ -204,10 +204,10 @@ function setUpInitScene(){
    var proj_matrix = [ 1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1 ];
    var model_matrix = [ 1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1 ];
 
-   var translate_matrix1 = translation(-centerCube[0], -centerCube[1], 0);
-   var translate_matrix2 = translation(centerCube[0], -0, 0);
-   var rotate_matrix = multiply(yRotation(0.5),xRotation(0.5));
-   var model_matrix = multiply(translate_matrix1, multiply(rotate_matrix, translate_matrix2));
+   // var translate_matrix1 = translation(-centerCube[0], -centerCube[1], 0);
+   // var translate_matrix2 = translation(centerCube[0], -0, 0);
+   // var rotate_matrix = multiply(yRotation(0.5),xRotation(0.5));
+   // var model_matrix = multiply(translate_matrix1, multiply(rotate_matrix, translate_matrix2));
 
    objects.push({
       "name" : "cube",
