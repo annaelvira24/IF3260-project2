@@ -10,10 +10,12 @@ function updateTranslate(axis, value){
         }
     }
     if(axis == 'x'){
-        var model_matrix = translation(value-oldValue, 0, 0);        
+        var model_matrix = translation(value-oldValueX, 0, 0);  
+        oldValueX = value;
     }
     else{
-        var model_matrix = translation(0, value-oldValue, 0);      
+        var model_matrix = translation(0, value-oldValueY, 0);
+        oldValueY = value;
     }
 
     let currentModelMatrix = objects[selectedObjectIdx].modelMatrix;
@@ -23,5 +25,4 @@ function updateTranslate(axis, value){
         draw(objects[i].projMatrix, objects[i].modelMatrix, objects[i].offset, objects[i].end);  
     }
     
-    oldValue = value;
 }

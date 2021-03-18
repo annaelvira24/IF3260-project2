@@ -33,7 +33,8 @@ function resetValue(){
     document.getElementById('rotate').value = 0;
     document.getElementById('transX').value = 0;
     document.getElementById('transY').value = 0;
-    value = 0;
+    oldValueX = 0;
+    oldValueY = 0;
 }
 
 
