@@ -186,7 +186,8 @@ for (var i = 0; i < 12*4*4; i++){
 //  }
 
 
-//  var proj_matrix = get_projection(40, canvas.width/canvas.height, 1, 100);
+//  var proj_matrix = get_projection(40, canvas.width/canvas.height, 1, 1);
+//  console.log(proj_matrix);
 
 // draw object
 function draw(proj_matrix, model_matrix, start, end){
@@ -204,10 +205,10 @@ function setUpInitScene(){
    var proj_matrix = [ 1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1 ];
    var model_matrix = [ 1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1 ];
 
-   // var translate_matrix1 = translation(-centerCube[0], -centerCube[1], 0);
-   // var translate_matrix2 = translation(centerCube[0], -0, 0);
-   // var rotate_matrix = multiply(yRotation(0.5),xRotation(0.5));
-   // var model_matrix = multiply(translate_matrix1, multiply(rotate_matrix, translate_matrix2));
+   var translate_matrix1 = translation(-centerCube[0], -centerCube[1], 0);
+   var translate_matrix2 = translation(centerCube[0], -0, 0);
+   var rotate_matrix = multiply(yRotation(0.5),xRotation(0.5));
+   var model_matrix = multiply(translate_matrix1, multiply(rotate_matrix, translate_matrix2));
 
    objects.push({
       "name" : "cube",
@@ -219,6 +220,8 @@ function setUpInitScene(){
       "projMatrix" : proj_matrix,
       "modelMatrix" : model_matrix
    });
+
+   // model_matrix = [ 1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1 ];
 
    objects.push({
       "name" : "pyramid",

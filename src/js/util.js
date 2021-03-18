@@ -29,12 +29,24 @@ function getCenterPoint(start, end, arr){
 }
 
 function resetValue(){
-    document.getElementById('scale').value = 0;
+    document.getElementById('scale').value = 1;
     document.getElementById('rotate').value = 0;
     document.getElementById('transX').value = 0;
     document.getElementById('transY').value = 0;
     oldValueX = 0;
     oldValueY = 0;
+    oldValueScale = 1;
+}
+
+function getSelectedObjectIdx(selectedObject){
+    for (var i = 0; i <objects.length; i++){
+        if(objects[i].name == selectedObject){
+            selectedObjectIdx = i;
+            break;
+        }
+    }
+
+    return selectedObjectIdx;
 }
 
 
