@@ -4,12 +4,10 @@ function updateTranslate(axis, value){
     let selectedObjectIdx = getSelectedObjectIdx(selectedObject);
 
     if(axis == 'x'){
-        var model_matrix = translation(value-oldValueX, 0, 0);  
-        oldValueX = value;
+        var model_matrix = translation(value, 0, 0);  
     }
     else{
-        var model_matrix = translation(0, value-oldValueY, 0);
-        oldValueY = value;
+        var model_matrix = translation(0, value, 0);
     }
 
     let currentModelMatrix = objects[selectedObjectIdx].modelMatrix;
@@ -21,7 +19,8 @@ function updateTranslate(axis, value){
     
 }
 
-function updateScale(value){
+function updateScale(){
+    let value = document.getElementById('scale').value;
     selectedObject = document.getElementById('objectlist').value;
     let selectedObjectIdx = getSelectedObjectIdx(selectedObject);
     

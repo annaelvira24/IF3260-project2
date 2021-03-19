@@ -72,12 +72,34 @@ body, html {
   cursor: pointer;
 }
 
+.navbar input[type = "number"]{
+  width: 50%;
+  border-width: 0.5px;
+  color: black;
+  font-size: 14px;
+  border-radius: 3px;
+  border-color: #ccc;
+  text-align: center;
+  height: 25px;
+  margin-bottom: 8px;
+  margin-top: 5px;
+}
+
 #button-tools{
   background-color: #feadb9;
 }
 
-#button-draw{
+#button-translate{
   background-color: #ddf2f4;
+  width: 23%;
+  font-weight: bold;
+  font-size: larger;
+}
+
+#button-scale{
+  background-color: #ddf2f4;
+  width: 40%;
+  height: 30px;
 }
 
 #button-proj{
