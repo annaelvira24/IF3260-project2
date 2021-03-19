@@ -24,18 +24,20 @@ function getCenterPoint(start, end, arr){
 
     let centerX = (maxX + minX)/2;
     let centerY = (maxY + minY)/2;
-    console.log(arr[end-1]);
+    console.log(centerX, centerY)
     return ([centerX, centerY])
 }
 
 function resetValue(){
     document.getElementById('scale').value = 1;
-    document.getElementById('rotate').value = 0;
-    document.getElementById('transX').value = 0;
-    document.getElementById('transY').value = 0;
-    oldValueX = 0;
-    oldValueY = 0;
-    oldValueScale = 1;
+    document.getElementById('rotateX').value = 0;
+    document.getElementById('rotateY').value = 0;
+    document.getElementById('rotateZ').value = 0;
+
+    oldValueRotX = 0;
+    oldValueRotY = 0;
+    oldValueRotZ = 0;
+
 }
 
 function getSelectedObjectIdx(selectedObject){

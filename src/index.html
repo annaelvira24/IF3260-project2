@@ -3,10 +3,9 @@
     <head>
         <link rel="stylesheet" href="css/template.css">
         <script>
-            var oldValueX = 0;
-            var oldValueY = 0;
-            var oldValueScale = 1;
-            var oldValueRotate = 0;
+            var oldValueRotX = 0;
+            var oldValueRotY = 0;
+            var oldValueRotZ = 0;
         </script>
                         
     </head>
@@ -14,15 +13,17 @@
     <body>
         <div class="navbar">
             <h3>TOOLS</h3>
-            <button id = "button-tools" onclick="">Camera</button>
-            <label for="cars">Choose an object:</label>
+            <!-- <button id = "button-tools" onclick="">Camera</button> -->
+            <label>Choose an object</label>
             <select id="objectlist" name="objectlist" onchange="resetValue()">
                 <option value="cube">Hollow Cube</option>
                 <option value="pyramid">Hollow Pyramid</option>
                 <option value="prism">Hollow Prism</option>
             </select>
-            <label>Rotate(radian):</label>
-            <input type="range" id="rotate" name="scale" min="-3.3" max="3.3" step="0.05" oninput="updateRotate(this.value)">
+            <label>Rotate</label><br/>
+            <label>X&nbsp;</label><input type="range" id="rotateX" name="scale" min="-3.3" max="3.3" step="0.05" oninput="updateRotate('x', this.value)">
+            <label>Y&nbsp;</label><input type="range" id="rotateY" name="scale" min="-3.3" max="3.3" step="0.05" oninput="updateRotate('y', this.value)">
+            <label>Z&nbsp;</label><input type="range" id="rotateZ" name="scale" min="-3.3" max="3.3" step="0.05" oninput="updateRotate('z', this.value)">
             <label>Scale</label><br/>
             <input type="number" id="scale" name="scale" min="0.1" step="0.1">
             <button id="button-scale" onmousedown="updateScale()">Scale</button><br/>
@@ -125,7 +126,9 @@
       <script type="text/javascript" src="js/draw.js"></script>
       <script type="text/javascript" src="js/transformation.js"></script>
       <script>
-          document.getElementById('scale').value = oldValueScale;
+          document.getElementById('rotateX').value = oldValueRotX;
+          document.getElementById('rotateY').value = oldValueRotY;
+          document.getElementById('rotateZ').value = oldValueRotZ;
       </script>
       <!-- TODO: -->
       <!-- <script type="text/javascript" src="js/buttonClick.js"></script> -->
