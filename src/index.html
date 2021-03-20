@@ -37,9 +37,9 @@
             <button id = "button-tools" onclick="">Reset</button>
             <label> Shader mode </label> <input type="checkbox">
             <h3>PROJECTION</h3>
-            <button id = "button-proj" onclick="">Orthographic</button>
-            <button id = "button-proj" onclick="">Oblique</button>
-            <button id = "button-proj" onclick="">Perspective</button>
+            <button id = "button-proj" onclick="toOrtho()">Orthographic</button>
+            <button id = "button-proj" onclick="toOblique()">Oblique</button>
+            <button id = "button-proj" onclick="toPerspective()">Perspective</button>
             <button id = "button-help" ><a class="helplink" href="./help.html" target="_blank">Help</a></button>
         </div>
 
@@ -125,6 +125,7 @@
       <script type="text/javascript" src="js/matrixOp.js"></script>
       <script type="text/javascript" src="js/draw.js"></script>
       <script type="text/javascript" src="js/transformation.js"></script>
+      <script type="text/javascript" src="js/projection.js"></script>
       <script>
           document.getElementById('rotateX').value = oldValueRotX;
           document.getElementById('rotateY').value = oldValueRotY;
