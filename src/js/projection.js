@@ -1,27 +1,66 @@
- function get_projection(angle, a, zMin, zMax) {
-    var ang = Math.tan((angle*.5)*Math.PI/180);//angle*.5
+function degToRad(degrees)
+{
+  var pi = Math.PI;
+  return degrees * (pi/180);
+}
+
+function getSTMat(left, right, bottom, top, near, far){
+    var a = right - left;
+    b = top - bottom;
+    c = far - near;
+
     return [
-       0.5/ang, 0 , 0, 0,
-       0, 0.5*a/ang, 0, 0,
-       0, 0, -(zMax+zMin)/(zMax-zMin), -1,
-       0, 0, (-2*zMax*zMin)/(zMax-zMin), 0 
+        2/a,0,0,-1*(left + right)/a,
+        0,2/b,0,-1*(top + bottom)/b,
+        0,0,-2/c,-1*(far + near )/c,
+        0,0,0,1
+    ]
+}
+
+function getShearMat(ang1, ang2){
+    return[
+        1,0,-1/Math.tan(degToRad(ang1)),0,
+        0,1,-1/Math.tan(degToRad(ang2)),0,
+        0,0,1,0,
+        0,0,0,1
+    ];
+}
+ 
+function getProjection(angle, aspect, zMin, zMax) {
+    var top = Math.tan(degToRad(angle)/2) * zMin;
+    var right = top * aspect;
+    return [
+       zMin/right, 0 , 0, 0,
+       0, zMin/top, 0, 0,
+       0, 0, -(zMax+zMin)/(zMax-zMin), (-2*zMax*zMin)/(zMax-zMin),
+       0, 0, -1, 0 
        ];
  }
 
 function toPerspective(){
-     var proj_matrix = get_projection(10, canvas.width/canvas.height, 1, 100);
+     var perspectiveMatrix = getProjection(30, canvas.width/canvas.height, 1, 100);
 
      for(var i = 0; i<objects.length; i++){
-        objects[i].projMatrix = proj_matrix;
+        objects[i].projMatrix = perspectiveMatrix;
         draw(objects[i].projMatrix, objects[i].modelMatrix, objects[i].offset, objects[i].end);  
     }
 }
 
 function toOrtho(){
-    var proj_matrix = [ 1,0,0,0, 0,1,0,0, 0,0,0,0, 0,0,0,1 ];
+    var orthMatrix = [ 1,0,0,0, 0,1,0,0, 0,0,0,0, 0,0,0,1 ];
+    var stMatrix = getSTMat(-1,1,-1,1,1,100);
 
     for(var i = 0; i<objects.length; i++){
-       objects[i].projMatrix = proj_matrix;
+       objects[i].projMatrix = multiply(orthMatrix, stMatrix);
        draw(objects[i].projMatrix, objects[i].modelMatrix, objects[i].offset, objects[i].end);  
    }
+}
+
+function toOblique(){
+    var shtMat = [ 1,0,0,0, 0,1,0,0, 0.3,0.3,0,0, 0,0,0,1 ];
+
+    for(var i = 0; i<objects.length; i++){
+        objects[i].projMatrix = multiply(translation(0.6,0.6,0), shtMat);
+        draw(objects[i].projMatrix, objects[i].modelMatrix, objects[i].offset, objects[i].end);  
+    }
 }

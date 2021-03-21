@@ -176,14 +176,13 @@ for (var i = 0; i < 12*4*4; i++){
 
 
 //  /*==================== MATRIX ====================== */
-//  var proj_matrix = get_projection(10, canvas.width/canvas.height, 1, 100);
 var proj_matrix = [ 1,0,0,0, 0,1,0,0, 0,0,0,0, 0,0,0,1 ];
  console.log(proj_matrix);
 
 // draw object
 function draw(proj_matrix, model_matrix, start, end){
    var view_matrix = [ 1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1 ];
-   view_matrix[14] = view_matrix[14] = view_matrix[14]-6;
+   view_matrix[14] = view_matrix[14] = view_matrix[14]-2;
 
    gl.uniformMatrix4fv(_Pmatrix, false, proj_matrix);
    gl.uniformMatrix4fv(_Vmatrix, false, view_matrix);
@@ -203,6 +202,8 @@ function setUpInitScene(){
    // var translate_matrix2 = translation(centerCube[0], -0, 0);
    // var rotate_matrix = multiply(yRotation(0.5),xRotation(0.5));
    // var model_matrix = multiply(translate_matrix1, multiply(rotate_matrix, translate_matrix2));
+   // var model_matrix = translation(0,0,10);
+
 
    objects.push({
       "name" : "cube",
