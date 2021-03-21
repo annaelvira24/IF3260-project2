@@ -36,6 +36,10 @@
             <br/>
             <button id = "button-tools" onclick="reset()">Reset</button>
             <label> Shader mode </label> <input type="checkbox">
+            <br/>
+            <label>Rotate</label><br/>
+            <label>Angle&nbsp;</label><input type="range" id="angle" name="camera" min="-360" max="360" step="1" oninput="updateView()"><br/>
+            <label>Zoom&nbsp;</label><input type="range" id="radius" name="camera" min="0" max="90" step="1" oninput="updateView()"><br/>
             <h3>PROJECTION</h3>
             <button id = "button-proj" onclick="toOrtho()">Orthographic</button>
             <button id = "button-proj" onclick="toOblique()">Oblique</button>
@@ -126,6 +130,7 @@
       <script type="text/javascript" src="js/draw.js"></script>
       <script type="text/javascript" src="js/transformation.js"></script>
       <script type="text/javascript" src="js/projection.js"></script>
+      <script type="text/javascript" src="js/camera.js"></script>
       <script>
           document.getElementById('rotateX').value = oldValueRotX;
           document.getElementById('rotateY').value = oldValueRotY;
