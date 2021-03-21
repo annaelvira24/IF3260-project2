@@ -174,7 +174,6 @@ for (var i = 0; i < 12*4*4; i++){
    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
  }
 
-
 //  /*==================== MATRIX ====================== */
 var proj_matrix = [ 1,0,0,0, 0,1,0,0, 0,0,0,0, 0,0,0,1 ];
  console.log(proj_matrix);
@@ -231,6 +230,17 @@ function setUpInitScene(){
 
    console.log(objects);
    for(var i = 0; i<objects.length; i++){
+      draw(objects[i].projMatrix, objects[i].modelMatrix, objects[i].offset, objects[i].end);  
+   }
+}
+
+function reset(){
+   var modelMatrix = [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1];
+   var projMatrix = [1,0,0,0, 0,1,0,0, 0,0,0,0, 0,0,0,1];
+
+   for(var i = 0; i<objects.length; i++){
+      objects[i].modelMatrix = modelMatrix;
+      objects[i].projMatrix = projMatrix;
       draw(objects[i].projMatrix, objects[i].modelMatrix, objects[i].offset, objects[i].end);  
    }
 }
