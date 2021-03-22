@@ -6,6 +6,7 @@
             var oldValueRotX = 0;
             var oldValueRotY = 0;
             var oldValueRotZ = 0;
+            var isShading = false;
         </script>
                         
     </head>
@@ -35,7 +36,7 @@
             <button id="button-translate" onmousedown="updateTranslate('y', -0.05)" >↓</button>
             <br/>
             <button id = "button-tools" onclick="reset()">Reset</button>
-            <label> Shader mode </label> <input type="checkbox">
+            <label> Shader mode </label> <input id='shader' type="checkbox" onclick="updateShading()">
             <br/>
             <br/>
             <label><b>Camera</b></label><br/>
@@ -79,6 +80,7 @@
         var vertCode = `
             attribute vec3 position;
             attribute vec3 normal;
+
             uniform mat4 Pmatrix;
             uniform mat4 Vmatrix;
             uniform mat4 Mmatrix;
@@ -93,26 +95,13 @@
                 vec3 ambientLight = vec3(0.3, 0.3, 0.3);
                 vec3 directionalLightColor = vec3(1, 1, 1);
                 vec3 directionalVector = normalize(vec3(0.85, 0.8, 0.75));
-                // vec4 transformedNormal = NMatrix * vec4(normal, 1.0);
+                vec4 transformedNormal = Nmatrix*vec4(normal, 1.);
                 
-                // float directional = max(dot(transformedNormal.xyz, directionalVector), 0.0);
-                // vLighting = ambientLight + (directionalLightColor * directional);
+                float directional = max(dot(transformedNormal.xyz, directionalVector), 0.0);
+                vLighting = ambientLight + (directionalLightColor * directional);
                 vColor = color;
             }
             `;
-
-            console.log(vertCode);
-
-        // var vertCode = 'attribute vec3 position;'+
-        //     'uniform mat4 Pmatrix;'+
-        //     'uniform mat4 Vmatrix;'+
-        //     'uniform mat4 Mmatrix;'+
-        //     'attribute vec3 color;'+//the color of the point
-        //     'varying vec3 vColor;'+
-        //     'void main(void) { '+//pre-built function
-        //        'gl_Position = Pmatrix*Vmatrix*Mmatrix*vec4(position, 1.);'+
-        //        'vColor = color;'+
-        //     '}';;
 
         // Create a vertex shader object
         var vertShader = gl.createShader(gl.VERTEX_SHADER);
@@ -121,15 +110,10 @@
         var fragCode = 'precision mediump float;'+
             'varying vec3 vColor;'+
             'varying vec3 vLighting;'+
-            // 'vLighting = vec3(0.1,0.1,0.1);'+
             
             'void main(void) {'+
                 'gl_FragColor = vec4(vColor, 1.);'+
-
-                // Lets multiply just the color portion (not the alpha)
-                // by the light
-                // 'gl_FragColor.rgb *= vLighting;'+
-            //    'gl_FragColor = vec4(vColor, 1.);'+
+                'gl_FragColor.rgb *= vLighting;'+
             '}';
 
         // Create fragment shader object

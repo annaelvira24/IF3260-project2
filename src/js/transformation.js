@@ -16,7 +16,6 @@ function updateTranslate(axis, value){
     for(var i = 0; i<objects.length; i++){
         draw(objects[i].projMatrix, objects[i].modelMatrix, objects[i].offset, objects[i].end);  
     }
-    
 }
 
 function updateScale(){
@@ -72,5 +71,4 @@ function updateRotate(axis, value){
     for(var i = 0; i<objects.length; i++){
         draw(objects[i].projMatrix, objects[i].modelMatrix, objects[i].offset, objects[i].end);  
     }
-
 }
