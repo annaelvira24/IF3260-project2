@@ -24,9 +24,9 @@ function updateScale(){
     selectedObject = document.getElementById('objectlist').value;
     let selectedObjectIdx = getSelectedObjectIdx(selectedObject);
     
-    let centerPoint = getCenterPoint(objects[selectedObjectIdx].offset, objects[selectedObjectIdx].offset + objects[selectedObjectIdx].numVertices*3,vertices);
+    let centerPoint = getCenterPoint(objects[selectedObjectIdx].offset*12, objects[selectedObjectIdx].offset*12 + objects[selectedObjectIdx].numVertices*3,vertices);
     var translate_matrix1 = translation(-centerPoint[0], -centerPoint[1], 0);
-    var translate_matrix2 = translation(centerPoint[0], -0, 0);
+    var translate_matrix2 = translation(centerPoint[0], centerPoint[1], 0);
     var scale_matrix = scale(value, value, value);
     var model_matrix = multiply(translate_matrix1, multiply(scale_matrix, translate_matrix2));
 

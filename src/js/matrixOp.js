@@ -64,3 +64,63 @@ function xRotation(angleInRadians) {
     }
     return product;
   }
+
+  function invert(a){
+    var temp;
+    var N = a.length;
+    var E = [];
+   
+    for (var i = 0; i < N; i++)
+      E[i] = [];
+   
+    for (i = 0; i < N; i++)
+      for (var j = 0; j < N; j++) {
+        E[i][j] = 0;
+        if (i == j)
+          E[i][j] = 1;
+      }
+   
+    for (var k = 0; k < N; k++) {
+      temp = a[k][k];
+   
+      for (var j = 0; j < N; j++)
+      {
+        a[k][j] /= temp;
+        a[k][j] /= temp;
+      }
+   
+      for (var i = k + 1; i < N; i++)
+      {
+        temp = a[i][k];
+   
+        for (var j = 0; j < N; j++)
+        {
+          a[i][j] -= a[k][j] * temp;
+          E[i][j] -= E[k][j] * temp;
+        }
+      }
+    }
+   
+    for (var k = N - 1; k > 0; k--)
+    {
+      for (var i = k - 1; i >= 0; i--)
+      {
+        temp = a[i][k];
+   
+        for (var j = 0; j < N; j++)
+        {
+          a[i][j] -= a[k][j] * temp;
+          E[i][j] -= E[k][j] * temp;
+        }
+      }
+    }
+   
+    for (var i = 0; i < N; i++)
+      for (var j = 0; j < N; j++)
+        a[i][j] = E[i][j];
+    return a;
+  }
+
+  function transpose(matrix) {
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
+  }

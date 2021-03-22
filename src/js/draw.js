@@ -1,6 +1,7 @@
 var _Pmatrix;
 var _Vmatrix;
 var _Mmatrix;
+var _Nmatrix;
  
  var cubeVertices = [
     // Cube
@@ -137,6 +138,51 @@ for (var i = 0; i < 12*4*4; i++){
     1,0,0, 1,0,0, 1,0,0, 1,0,0,
  ];
 
+ var vertexNormals = [
+   // Back
+   0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0,
+   0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0,
+   0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0,
+   0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0,
+   
+   // Front
+    0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0,
+    0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0,
+    0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0,
+    0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0,
+
+   // Top
+    0.0,  1.0,  0.0,
+    0.0,  1.0,  0.0,
+    0.0,  1.0,  0.0,
+    0.0,  1.0,  0.0,
+
+   // Bottom
+    0.0, -1.0,  0.0,
+    0.0, -1.0,  0.0,
+    0.0, -1.0,  0.0,
+    0.0, -1.0,  0.0,
+
+   // Right
+    1.0,  0.0,  0.0,
+    1.0,  0.0,  0.0,
+    1.0,  0.0,  0.0,
+    1.0,  0.0,  0.0,
+
+   // Left
+   -1.0,  0.0,  0.0,
+   -1.0,  0.0,  0.0,
+   -1.0,  0.0,  0.0,
+   -1.0,  0.0,  0.0,
+
+   0.0, -1.0,  0.0,
+   0.0, -1.0,  0.0,
+   0.0, -1.0,  0.0,
+   0.0, -1.0,  0.0,
+
+
+ ];
+
  function setUpBuffer(){
    // Create and store data into vertex buffer
    var vertex_buffer = gl.createBuffer ();
@@ -148,10 +194,16 @@ for (var i = 0; i < 12*4*4; i++){
    gl.bindBuffer(gl.ARRAY_BUFFER, color_buffer);
    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
 
+   var normal_buffer = gl.createBuffer();
+   gl.bindBuffer(gl.ARRAY_BUFFER, normal_buffer);
+   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexNormals),gl.STATIC_DRAW);
+
    /*======== Associating attributes to vertex shader =====*/
+   console.log(shaderProgram);
    _Pmatrix = gl.getUniformLocation(shaderProgram, "Pmatrix");
    _Vmatrix = gl.getUniformLocation(shaderProgram, "Vmatrix");
    _Mmatrix = gl.getUniformLocation(shaderProgram, "Mmatrix");
+   _Nmatrix = gl.getUniformLocation(shaderProgram, "Nmatrix");
 
    gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer);
    var _position = gl.getAttribLocation(shaderProgram, "position");
@@ -162,6 +214,12 @@ for (var i = 0; i < 12*4*4; i++){
    var _color = gl.getAttribLocation(shaderProgram, "color");
    gl.vertexAttribPointer(_color, 3, gl.FLOAT, false,0,0) ;
    gl.enableVertexAttribArray(_color);
+
+   gl.bindBuffer(gl.ARRAY_BUFFER, normal_buffer);
+   var _normal = gl.getAttribLocation(shaderProgram, "normal");
+   gl.vertexAttribPointer(_normal, 3, gl.FLOAT, false,0,0);
+   gl.enableVertexAttribArray(_normal);
+
    gl.useProgram(shaderProgram);
 
    gl.enable(gl.DEPTH_TEST);
@@ -176,7 +234,8 @@ for (var i = 0; i < 12*4*4; i++){
 
 //  /*==================== MATRIX ====================== */
 var proj_matrix = [ 1,0,0,0, 0,1,0,0, 0,0,0,0, 0,0,0,1 ];
- console.log(proj_matrix);
+
+//  console.log(proj_matrix);
 
 // draw object
 function draw(proj_matrix, model_matrix, start, end){
