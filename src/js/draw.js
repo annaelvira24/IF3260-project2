@@ -4,8 +4,6 @@ var _Mmatrix;
 var _Nmatrix;
  
  var cubeVertices = [
-    // Cube
-
     //back face
    -0.2,-0.2,-0.2, 0.2,-0.2,-0.2, 0.2,-0.18,-0.2, -0.2,-0.18,-0.2,
    -0.2,0.18,-0.2, 0.2,0.18,-0.2, 0.2,0.2,-0.2, -0.2,0.2,-0.2,
@@ -74,8 +72,6 @@ var pyramidVertices = [
 
 
 var prismVertices = [
-    // Cube
-
     //back face
     -0.2,-0.2,-0.2, 0.2,-0.2,-0.0, 0.2,-0.18,-0.0, -0.2,-0.18,-0.2,
     -0.2,0.18,-0.2, 0.2,0.18,-0.0, 0.2,0.2,-0.0, -0.2,0.2,-0.2,
@@ -254,10 +250,8 @@ for (var i = 0; i < 12*4*5; i++){
     1.0,0.0,0.0, 1.0,0.0,0.0, 1.0,0.0,0.0, 1.0,0.0,0.0,
     1.0,0.0,0.0, 1.0,0.0,0.0, 1.0,0.0,0.0, 1.0,0.0,0.0,
     1.0,0.0,0.0, 1.0,0.0,0.0, 1.0,0.0,0.0, 1.0,0.0,0.0,
-    1.0,0.0,0.0, 1.0,0.0,0.0, 1.0,0.0,0.0, 1.0,0.0,0.0,
 
     //front
-    0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0,
     0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0,
     0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0,
     0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0,
@@ -266,13 +260,41 @@ for (var i = 0; i < 12*4*5; i++){
     -1.0,0.0,0.0, -1.0,0.0,0.0, -1.0,0.0,0.0, -1.0,0.0,0.0,
     -1.0,0.0,0.0, -1.0,0.0,0.0, -1.0,0.0,0.0, -1.0,0.0,0.0,
     -1.0,0.0,0.0, -1.0,0.0,0.0, -1.0,0.0,0.0, -1.0,0.0,0.0,
-    -1.0,0.0,0.0, -1.0,0.0,0.0, -1.0,0.0,0.0, -1.0,0.0,0.0,
+
+    //back
+    0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0,
+    0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0,
+    0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0,
 
     //back
     0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0,
     0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0,
     0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0,
     0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0,
+
+   //front
+   0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0,
+   0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0,
+   0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0,
+   0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0,
+
+   //bottom
+   0.0,-1.0,0.0, 0.0,-1.0,0.0, 0.0,-1.0,0.0, 0.0,-1.0,0.0,
+   0.0,-1.0,0.0, 0.0,-1.0,0.0, 0.0,-1.0,0.0, 0.0,-1.0,0.0,
+   0.0,-1.0,0.0, 0.0,-1.0,0.0, 0.0,-1.0,0.0, 0.0,-1.0,0.0,
+   0.0,-1.0,0.0, 0.0,-1.0,0.0, 0.0,-1.0,0.0, 0.0,-1.0,0.0,
+
+   // Top
+   0.0,1.0,0.0, 0.0,1.0,0.0, 0.0,1.0,0.0, 0.0,1.0,0.0,
+   0.0,1.0,0.0, 0.0,1.0,0.0, 0.0,1.0,0.0, 0.0,1.0,0.0,
+   0.0,1.0,0.0, 0.0,1.0,0.0, 0.0,1.0,0.0, 0.0,1.0,0.0,
+   0.0,1.0,0.0, 0.0,1.0,0.0, 0.0,1.0,0.0, 0.0,1.0,0.0,
+
+   // Left
+   -1.0,0.0,0.0, -1.0,0.0,0.0, -1.0,0.0,0.0, -1.0,0.0,0.0,
+   -1.0,0.0,0.0, -1.0,0.0,0.0, -1.0,0.0,0.0, -1.0,0.0,0.0,
+   -1.0,0.0,0.0, -1.0,0.0,0.0, -1.0,0.0,0.0, -1.0,0.0,0.0,
+   -1.0,0.0,0.0, -1.0,0.0,0.0, -1.0,0.0,0.0, -1.0,0.0,0.0,
 
  ];
 
@@ -297,8 +319,6 @@ for (var i = 0; i < 12*4*5; i++){
    _Vmatrix = gl.getUniformLocation(shaderProgram, "Vmatrix");
    _Mmatrix = gl.getUniformLocation(shaderProgram, "Mmatrix");
    _Nmatrix = gl.getUniformLocation(shaderProgram, "Nmatrix");
-
-   console.log("kesel", _Pmatrix, _Nmatrix);
 
    gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer);
    var _position = gl.getAttribLocation(shaderProgram, "position");
@@ -330,11 +350,6 @@ for (var i = 0; i < 12*4*5; i++){
    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
  }
 
-//  /*==================== MATRIX ====================== */
-var proj_matrix = [ 1,0,0,0, 0,1,0,0, 0,0,0,0, 0,0,0,1 ];
-
-//  console.log(proj_matrix);
-
 // draw object
 function draw(proj_matrix, model_matrix, start, end){
 
@@ -361,16 +376,8 @@ function draw(proj_matrix, model_matrix, start, end){
 }
 
 function setUpInitScene(){
-   let centerCube = (getCenterPoint(0, 96*3, vertices));
-
+   var proj_matrix = [ 1,0,0,0, 0,1,0,0, 0,0,0,0, 0,0,0,1 ];
    var model_matrix = [ 1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1 ];
-
-   // var translate_matrix1 = translation(-centerCube[0], -centerCube[1], 0);
-   // var translate_matrix2 = translation(centerCube[0], -0, 0);
-   // var rotate_matrix = multiply(yRotation(0.5),xRotation(0.5));
-   // var model_matrix = multiply(translate_matrix1, multiply(rotate_matrix, translate_matrix2));
-   // var model_matrix = translation(0,0,10);
-
 
    objects.push({
       "name" : "cube",
@@ -379,19 +386,19 @@ function setUpInitScene(){
       "numVertices" : 96,
       "vertices" : vertices.slice(0,96*3),
       "color" : colors.slice(0, 96*3),
+      "normals" : vertexNormals.slice(0,96*3),
       "projMatrix" : proj_matrix,
       "modelMatrix" : model_matrix
    });
-
-   // model_matrix = [ 1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1 ];
 
    objects.push({
       "name" : "pyramid",
       "offset" : 24,
       "end" : 40,
       "numVertices" : 64,
-      "vertices" : pyramidVertices,
+      "vertices" : vertices.slice(96*3, 96*3+64*3),
       "color" : colors.slice(96*3, 96*3+64*3),
+      "normals" : vertexNormals.slice(96*3, 96*3+64*3),
       "projMatrix" : proj_matrix,
       "modelMatrix" : model_matrix
    });
@@ -403,6 +410,7 @@ function setUpInitScene(){
         "numVertices" : 80,
         "vertices" : vertices.slice(96*3+64*3, 96*3+64*3+80*3),
         "color" : colors.slice(96*3+64*3, 96*3+64*3+80*3),
+        "normals" : vertexNormals.slice(96*3+64*3, 96*3+64*3+80*3),
         "projMatrix" : proj_matrix,
         "modelMatrix" : model_matrix
     });
