@@ -96,6 +96,11 @@ body, html {
   font-size: larger;
 }
 
+#button-zoom{
+  background-color: #ddf2f4;
+  width: 30%;
+}
+
 #button-scale{
   background-color: #ddf2f4;
   width: 40%;

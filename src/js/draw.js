@@ -247,24 +247,24 @@ for (var i = 0; i < 12*4*5; i++){
     0.0,-1.0,0.0, 0.0,-1.0,0.0, 0.0,-1.0,0.0, 0.0,-1.0,0.0,
 
     //right
-    1.0,0.0,0.0, 1.0,0.0,0.0, 1.0,0.0,0.0, 1.0,0.0,0.0,
-    1.0,0.0,0.0, 1.0,0.0,0.0, 1.0,0.0,0.0, 1.0,0.0,0.0,
-    1.0,0.0,0.0, 1.0,0.0,0.0, 1.0,0.0,0.0, 1.0,0.0,0.0,
+    0.5,0.5,0.0, 0.5,0.5,0.0, 0.5,0.5,0.0, 0.5,0.5,0.0,
+    0.5,0.5,0.0, 0.5,0.5,0.0, 0.5,0.5,0.0, 0.5,0.5,0.0,
+    0.5,0.5,0.0, 0.5,0.5,0.0, 0.5,0.5,0.0, 0.5,0.5,0.0,
 
     //front
     0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0,
-    0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0,
-    0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0, 0.0,0.0,1.0,
+    0.0,0.5,0.5, 0.0,0.5,0.5, 0.0,0.5,0.5, 0.0,0.5,0.5,
+    0.0,0.5,0.5, 0.0,0.5,0.5, 0.0,0.5,0.5, 0.0,0.5,0.5,
 
     //left
-    -1.0,0.0,0.0, -1.0,0.0,0.0, -1.0,0.0,0.0, -1.0,0.0,0.0,
-    -1.0,0.0,0.0, -1.0,0.0,0.0, -1.0,0.0,0.0, -1.0,0.0,0.0,
-    -1.0,0.0,0.0, -1.0,0.0,0.0, -1.0,0.0,0.0, -1.0,0.0,0.0,
+    -0.5,0.5,0.0, -0.5,0.5,0.0, -0.5,0.5,0.0, -0.5,0.5,0.0,
+    -0.5,0.5,0.0, -0.5,0.5,0.0, -0.5,0.5,0.0, -0.5,0.5,0.0,
+    -0.5,0.5,0.0, -0.5,0.5,0.0, -0.5,0.5,0.0, -0.5,0.5,0.0,
 
     //back
-    0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0,
-    0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0,
-    0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0,
+    0.0,0.5,-0.5, 0.0,0.5,-0.5, 0.0,0.5,-0.5, 0.0,0.5,-0.5,
+    0.0,0.5,-0.5, 0.0,0.5,-0.5, 0.0,0.5,-0.5, 0.0,0.5,-0.5,
+    0.0,0.5,-0.5, 0.0,0.5,-0.5, 0.0,0.5,-0.5, 0.0,0.5,-0.5,
 
     //back
     0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0, 0.0,0.0,-1.0,
@@ -350,12 +350,10 @@ for (var i = 0; i < 12*4*5; i++){
    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
  }
 
+ var view_matrix = [ 1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,-2,1 ];
+
 // draw object
 function draw(proj_matrix, model_matrix, start, end){
-
-   var view_matrix = [ 1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1 ];
-   view_matrix[14] = view_matrix[14] = view_matrix[14]-2;
-
    gl.uniformMatrix4fv(_Pmatrix, false, proj_matrix);
    gl.uniformMatrix4fv(_Vmatrix, false, view_matrix);
    gl.uniformMatrix4fv(_Mmatrix, false, model_matrix);
@@ -424,12 +422,24 @@ function setUpInitScene(){
 function reset(){
    var modelMatrix = [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1];
    var projMatrix = [1,0,0,0, 0,1,0,0, 0,0,0,0, 0,0,0,1];
+   view_matrix = [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,-2,1];
+
 
    for(var i = 0; i<objects.length; i++){
       objects[i].modelMatrix = modelMatrix;
       objects[i].projMatrix = projMatrix;
       draw(objects[i].projMatrix, objects[i].modelMatrix, objects[i].offset, objects[i].end);  
    }
+
+   oldValueRotX = 0;
+   oldValueRotY = 0;
+   oldValueRotZ = 0;
+   oldValueMove = 0;
+
+   document.getElementById('rotateX').value = oldValueRotX;
+   document.getElementById('rotateY').value = oldValueRotY;
+   document.getElementById('rotateZ').value = oldValueRotZ;
+   document.getElementById('angle').value = oldValueMove;
 }
 
 setUpBuffer();
