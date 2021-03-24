@@ -100,7 +100,6 @@ async function importData() {
 
     if (fileUpload.value !== "") {
         var path = (window.URL || window.webkitURL).createObjectURL(fileUpload.files[0]);
-        console.log(path);
         initModelFile(path);
     }
 }
@@ -108,6 +107,7 @@ async function importData() {
 async function initModelFile(filename) {
     const modelJson = await loadFile(filename);
     objects = JSON.parse(modelJson);
+    // TODO: reset canvas
     setUpInitScene();
 }
 
