@@ -476,25 +476,16 @@ function setUpInitScene(){
 }
 
 function reset(){
-   var modelMatrix = [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1];
    var projMatrix = [1,0,0,0, 0,1,0,0, 0,0,0,0, 0,0,0,1];
    view_matrix = [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,-2,1];
 
 
    for(var i = 0; i<objects.length; i++){
-      objects[i].modelMatrix = modelMatrix;
       objects[i].projMatrix = projMatrix;
       draw(objects[i].projMatrix, objects[i].modelMatrix, objects[i].offset, objects[i].end);  
    }
 
-   oldValueRotX = 0;
-   oldValueRotY = 0;
-   oldValueRotZ = 0;
    oldValueMove = 0;
-
-   document.getElementById('rotateX').value = oldValueRotX;
-   document.getElementById('rotateY').value = oldValueRotY;
-   document.getElementById('rotateZ').value = oldValueRotZ;
    document.getElementById('angle').value = oldValueMove;
 }
 
