@@ -100,15 +100,22 @@ async function importData() {
 
     if (fileUpload.value !== "") {
         var path = (window.URL || window.webkitURL).createObjectURL(fileUpload.files[0]);
-        initModelFile(path);
+        await initModelFile(path);
     }
 }
 
 async function initModelFile(filename) {
     const modelJson = await loadFile(filename);
     objects = JSON.parse(modelJson);
-    // TODO: reset canvas
-    setUpInitScene();
+
+    var resetButton = document.getElementById("button-tools");
+    resetButton.click();
+    setUpBufferFromObjects();
+    
+    for(var i = 0; i<3; i++){
+        draw(objects[i].projMatrix, objects[i].modelMatrix, objects[i].offset, objects[i].end);
+    }
+
 }
 
 const loadFile = async (filename) => {
