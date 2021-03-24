@@ -70,7 +70,7 @@ canvasElem.addEventListener('mousedown', (e) =>
 });
 
 function saveData() {
-    var json = JSON.stringify(objects);
+    var json = JSON.stringify(objects, null, 4);
     let dataUri =
         "data:application/json;charset=utf-8," + encodeURIComponent(json);
     let exportFileDefaultName = "model.json";
